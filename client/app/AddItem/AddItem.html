@@ -1,0 +1,81 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+<h2>
+        Add Items
+</h2>
+
+
+<div class="page-header">
+<p></p>
+</div>
+
+<div class="fluid-container">
+    <form class="form-horizontal" enctype="multipart/form-data">
+        <fieldset>
+            <legend>Add a new item</legend>
+            <div  style="margin-left: 40px;" class="col-md-10">
+            <div class="control-group" >
+                <label for="title" class="control-label">Title : </label>
+
+                    <input label="Title" class="input-xlarge" ng-model="newItem.title" name="title" placeholder="Enter item title" type="text">
+                    <button ng-click="querymovie()">Lookup Movie</button>
+            </div>
+            <div class="control-group">
+                <label for="artist" class="control-label">Artist/Author : </label>
+                
+                    <input label="Author/Artist" class="input-xlarge" ng-model="newItem.artist" name="artist" placeholder="Enter Artist/Author name" type="text">
+                
+            </div>
+            <div class="control-group">
+                <label for="genre" class="control-label">Genre : </label>
+                
+                    <input label="Genre" class="input-xlarge" ng-model="newItem.genre" name="genre" placeholder="Enter Genre" type="text">
+                
+            </div>
+
+            <div class="control-group">
+                <label for="file" class="control-label">Cover Image : </label>
+                <input class="input-xlarge" type="file" file-model="myFile"/>  
+                <img src={{newItem.imageUrl}} height=200 width = 200>        
+            </div>
+            
+            <div class="control-group">
+                <label class="control-label" for="location">Location : </label>
+                
+                    <input label="location" class="input-xlarge" ng-model="newItem.location" name="location">
+                
+            </div>
+
+            <div class="control-group">
+                <label class="control-label" for="snippet">Short Description : </label>
+                
+                    <input label="snippet" class="input-xlarge" ng-model="newItem.snippet" name="snippet">
+                
+            </div>
+
+            <div class="control-group">
+                <label class="control-label" for="mediakind">Item Format : </label>
+                
+                    <select id="mediakind" name="mediakind" ng-model="newItem.format" title="Media Type">
+                        <option>Book</option>
+                        <option>Film</option>
+                        <option>Music</option>
+                    </select>
+                
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="mediakind">Status : </label>
+                
+                    <select id="status" name="status" title="Status">
+                        <option>Available</option>
+                        <option>on Loan</option>
+                    </select>
+                
+            </div>
+            <div class="form-actions">
+                <button id="submit" class="btn btn-large btn-primary" ng-click="uploadFile()" >Add new item</button>
+            </div>
+        </div>
+        </fieldset>
+    </form>
+</div>
+

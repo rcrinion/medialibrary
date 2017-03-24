@@ -1,0 +1,22 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<header class="hero-unit" id="banner">
+  <div class="container">
+    <h1>Thank you for using MediaLibrary</h1>
+    <p class="lead">We look forward to seeing you again soon.</p>
+  </div>
+</header>
+
+<div class="container">
+  <p> Please click logout if you are sure you are done.</p>
+
+  <p> Click Cancel if you want to stay awhile.</p>
+</div>
+
+<input  type="button" class="btn btn-secondary" 
+    ng-click="stayHere()" 
+    value="Cancel"/>
+
+<input  type="button" class="btn btn-primary" 
+    ng-click="logout()" 
+    value="Logout"/>

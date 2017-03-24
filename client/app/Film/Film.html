@@ -1,0 +1,57 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+      <h2>
+        Film List
+      </h2>
+
+<div class="page-header">
+<p></p>
+</div>
+
+
+  <div>
+    <form>
+      <div class="form-group">
+        <div class="input-group">
+          <div class="input-group-addon"><i class="fa fa-search"></i></div>
+              <input type="text" class="form-control" placeholder="Search Artist" ng-model="search.Artist">
+
+              <input type="text" class="form-control" placeholder="Search Title" ng-model="search.Title">
+              <input type="text" class="form-control" placeholder="Search Genre" ng-model="search.Genre">
+         </div>
+        </div>      
+      </div>
+    </form>
+
+  
+    <table class="table table-bordered table-striped">
+      <tr>
+        <thead>
+          <th>Movie Poster</th>
+          <th><a ng-click="toggleSort('title')">Title</a></th>
+          <th><a ng-click="toggleSort('artist')">Director</a></th>
+          <th><a ng-click="toggleSort('genre')">Genre</a></th>
+          <th>Description</th>
+        </thead>
+      </tr>
+      <tbody ng-repeat="item in items | orderBy:sortColumn:sortReverse | filter:{artist: search.Artist} 
+                          | filter: {title: search.Title} 
+                          | filter: {genre: search.Genre}
+                          | filter: {format:'Film'}" 
+                          >
+
+
+
+        <tr>
+          <td><a href="/Film/{{item._id}}" class="thumb"><img ng-src="{{item.imageUrl}}" height="120" width="80"></td>
+          <td><a href="/Film/{{item._id}}">{{item.title}}</td>
+          <td>{{item.artist}}</td>
+          <td>{{item.genre}}</td>
+          <td>Description: {{item.snippet}}</td>
+        </tr>
+
+      </tbody>            
+    </table>    
+  </div>
+
+
+

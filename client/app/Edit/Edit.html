@@ -1,0 +1,124 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+<h2>
+        Edit Items
+</h2>
+
+
+<div class="page-header">
+<p></p>
+</div>
+
+<div class="fluid-container" style="margin-left: 40px;" class="col-md-10">
+    <form class="form-horizontal" enctype="multipart/form-data">
+        <fieldset>
+            <legend>Edit an item</legend>
+            <div class="control-group">
+                <label for="title" class="control-label">Title : </label>
+
+                    <input label="Title" class="input-xlarge" ng-model="newItem.title" name="title" placeholder="Enter item title" type="text">
+                    <button ng-click="querymovie()">Lookup Movie</button>
+            </div>
+            <div class="control-group">
+                <label for="artist" class="control-label">Artist/Author : </label>
+                
+                    <input label="Author/Artist" class="input-xlarge" ng-model="newItem.artist" name="artist" placeholder="Enter Artist/Author name" type="text">
+                
+            </div>
+            <div class="control-group">
+                <label for="genre" class="control-label">Genre : </label>
+                
+                    <input label="Genre" class="input-xlarge" ng-model="newItem.genre" name="genre" placeholder="Enter Genre" type="text">
+                
+            </div>
+
+            <div class="control-group">
+                <label for="file" class="control-label">Cover Image : </label>
+                <input class="input-xlarge" type="file" file-model="myFile"/>  
+                <img src={{newItem.imageUrl}} height=160 width = 120>               
+            </div>
+            
+            <div class="control-group">
+                <label class="control-label" for="location">Location : </label>
+                
+                    <input label="location" class="input-xlarge" ng-model="newItem.location" name="location">
+                
+            </div>
+
+            <div class="control-group">
+                <label class="control-label" for="snippet">Short Description : </label>
+                
+                    <input label="snippet" class="input-xlarge" ng-model="newItem.snippet" name="snippet">
+                
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="mediakind">Status : </label>
+                
+                    <select id="status" name="status" title="Status">
+                        <option>Available</option>
+                        <option>on Loan</option>
+                    </select>
+                
+            </div>
+            <div class="control-group" ng-switch=newItem.format>
+            	<div ng-switch-when="Music">
+            		<table class="table table-bordered table-striped">
+            			<tr>
+        					<thead>
+          						<th><a ng-click="toggleSort('tracknum')">Track Number</a></th>
+          						<th><a ng-click="toggleSort('tracktitle')">Track Title</a></th>
+          						<th><a ng-click="toggleSort('trackcomposer')">Composer/Writer</a></th>
+          						<th><a ng-click="toggleSort('trackartist')">Artist</a></th>
+          						<th><a ng-click="toggleSort('tracktime')">Track Time</a></th>
+        					</thead>
+      					</tr>
+      					<tbody ng-repeat="track in newItem.tracks | orderBy:sortColumn:sortReverse" ng-switch="track.tracktitle">
+        					<tr ng-switch-when="">
+          						<td><input type="text" class="form-control" placeholder="Track #" ng-model="newItem.track.tracknum"></td>
+          						<td><input type="text" class="form-control" placeholder="Track Name" ng-model="newItem.track.tracktitle"></td>
+          						<td><input type="text" class="form-control" placeholder="Track Composer" ng-model="newItem.track.trackcomposer"></td>
+          						<td><input type="text" class="form-control" placeholder="Track Artist" ng-model="newItem.track.trackartist"></td>
+          						<td><input type="text" class="form-control" placeholder="Track Running Time" ng-model="newItem.track.tracktime"></td>
+          						<td>    <input  type="button" class="btn btn-primary" 
+                    				ng-click="new_track = saveTrack(new_track)" 
+                    				value="Save Track"/>
+          						</td>
+       		 				</tr>
+
+       		 				<tr ng-switch-default>
+          						<td>{{track.tracknum}}</td>
+          						<td>{{track.tracktitle}}</td>
+          						<td>{{track.trackcomposer}}</td>
+          						<td>{{track.trackartist}}</td>
+          						<td>{{track.tracktime}}</td>
+        					</tr>
+      					</tbody>            
+    				</table> 
+
+    				<input  type="button" class="btn btn-primary" 
+                    	ng-click="addTrack(newItem)" 
+                    	value="Add New Track"/>
+       		 	</div> <!--Music -->
+       		 	<div class="control-group" ng-switch-default>
+                	<p>
+                		<label for="format">Film/Book Media</label>
+                		<input id="format" type="text" placeholder="Format" ng-model="newItem.details.format">
+                	</p>
+              		<p>
+                		<label for="frontpiece">Film/Book Plot</label>                    
+                		<textarea id="frontpiece" name="frontpiece" ng-model="newItem.details.plotsummary">default text</textarea>
+              		</p>
+
+              		<img ng-src="{{$scope.newItem.imageUrl}}">
+              </div>
+
+              <input  type="button" class="btn btn-primary" 
+                    ng-click="saveDetails(new_details)" 
+                    value="Save Details"/>
+            </div>
+                
+            </div>
+
+
+        </fieldset>
+    </form>
+</div>

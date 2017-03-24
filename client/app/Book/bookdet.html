@@ -1,0 +1,48 @@
+
+
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+      <h2>
+        Book Details
+      </h2>
+
+<div class="page-header">
+<p></p>
+</div>
+  <div class="container-fluid">
+
+
+      <ul>
+        <div class="row">
+        <li class="thumbnail">
+          <h2>
+            <div class="col-md-3">
+              <span class="thumb"><img ng-src="{{book.imageUrl}}"></span>
+            </div>
+          </h2>
+          
+          <div class="col-md-9">
+
+            <h2><p>{{book.title}}</p></h2>
+            <p>Author: {{book.artist}}</p>
+            <p>Genre: {{book.genre}}</p>
+            <div ng-switch="book.details.plotsummary || 'null'">
+              <div ng-switch-default>
+                <p>Format: {{book.details.format}}</p>
+                <p>Front Cover: {{book.details.frontcover}}</p>
+                <p>Plot Summary: {{book.details.plotsummary}}</p>
+              </div>
+
+              <input  type="button" class="btn btn-primary" 
+                ng-click="Edit(book)" 
+                value="Edit Book"/>
+
+
+            </div>
+          </div> <!-- Col-md-9 -->
+        </li>
+        </div>
+      </ul>
+    </div>
+  </div>
+</div>

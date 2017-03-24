@@ -1,0 +1,49 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+      <h2>
+        Music List
+      </h2>
+
+
+<div class="page-header">
+<p></p>
+</div>
+
+<div class="fluid-container">
+  <div class="row">
+    <div class="col-md-2">
+      <!--Doing nothing - spacing -->
+    </div> <!-- col-md-2 -->
+    <div class="col-md-2">
+      Search: <input type="text" class="form-control" placeholder="Search Artist" ng-model="search.Artist">
+              <input type="text" class="form-control" placeholder="Search Title" ng-model="search.Title">
+              <input type="text" class="form-control" placeholder="Search Genre" ng-model="search.Genre"> 
+      Sort by: 
+      <select ng-model="orderProp">
+        <option value="author">Author</option>
+        <option value="title">Title</option>
+        <option value="genre">Genre</option>
+      </select>
+    </div> <!-- col-md2 -->
+
+
+
+   <div class="col-md-8">
+     <ul  class="books">
+        <li ng-repeat="item in items | filter: {artist:search.Artist, format:'Music' } | 
+            filter: {title:search.Title, format:'Music' } |
+            filter: {genre:search.Genre, format:'Music' } |
+            orderBy:orderProp" class="thumbnail">
+          <div class="col-md-3">
+           <a href="/Music/{{item._id}}" class="thumb"><img ng-src="{{item.imageUrl}}"></a>
+          </div>  <!-- col-md-3 -->
+          <div class="col-md-5">
+           <a href="/Music/{{item._id}}"><h4>{{item.title}}</h4></a>
+           <p>Artist: {{item.artist}}</p>
+           <p>Genre: {{item.genre}}</p>
+           <p>Description: {{item.snippet}}</p>
+          </div> <!-- col-md-5 -->
+        </li>
+      </ul>
+    </div> <!-- col-md-8 -->
+  </div> <!-- row -->
+</div> <!-- container -->

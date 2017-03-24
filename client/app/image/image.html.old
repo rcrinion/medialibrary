@@ -1,0 +1,10 @@
+<div>
+
+<form>
+	<h2>Select Image</h2>	
+    <input class="input-block-level" type="file" file-model="myFile"/>
+    <button class="btn btn-lg btn-primary btn-block" ng-click="uploadFile()">Upload File</button>
+</form>
+
+<a href="/AddItem">Return to Add item</a>
+</div>

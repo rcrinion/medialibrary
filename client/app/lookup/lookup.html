@@ -1,0 +1,45 @@
+
+<div ng-include="'components/navbar/navbar.html'"></div>
+<h2>
+        Add Items
+</h2>
+
+
+<div class="col-md-12">
+
+<div class="fluid-container">
+    <form class="form-horizontal" enctype="multipart/form-data">
+        <fieldset>
+            <legend>Search a movie</legend>
+            <div class="control-group">
+                <label for="title" class="control-label">Title : </label>
+
+                    <input label="Title" class="input-xlarge" ng-model="title" name="title" placeholder="Enter item title" type="text">
+                    <button ng-click="querymovie()">Lookup Movie</button>
+            </div>
+        </fieldset>
+    </form>
+</div>
+
+   <div class="col-md-9">
+
+
+      <ul  class="albums">
+        <li class="thumbnail">
+          <h2>
+            <span class="thumb"><img ng-src="{{Item.imageUrl}}"></span>
+          </h2>
+           <h2><p>{{Item.title}}</p></h2>
+           <p>Director: {{Item.artist}}</p>
+           <div ng-switch="Item.details.plotsummary || 'null'">
+              <p>Format: {{Item.details.format}}</p>
+              <p>Plot Summary: {{Item.details.plotsummary}}</p>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+</div>
+
+
+</div>

@@ -1,0 +1,40 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+      <h2>
+        Film Details
+      </h2>
+
+<div class="page-header">
+<p></p>
+</div>
+
+    <div class="col-md-9">
+
+
+      <ul  class="albums">
+        <li class="thumbnail">
+          <h2>
+            <span class="thumb"><img ng-src="{{film.imageUrl}}" height="270" width="180"></span>
+          </h2>
+           <h2><p>{{film.title}}</p></h2>
+           <p>Director: {{film.artist}}</p>
+           <div ng-switch="film.details.plotsummary || 'null'">
+
+            <div ng-switch-default>
+              <p>Format: {{film.details.format}}</p>
+              <p>Plot Summary: {{film.snippet}}</p>
+            </div>
+
+    <input  type="button" class="btn btn-primary" 
+                    ng-click="Edit(film)" 
+                    value="Edit Film"/>
+
+    <input  type="button" class="btn btn-secondary" 
+                    ng-click="quit()" 
+                    value="Done"/>
+
+          </div>
+        </li>
+      </ul>
+    </div>
+</div>

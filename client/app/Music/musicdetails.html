@@ -1,0 +1,51 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<h1>Album details</h1>
+
+<p></p>
+
+
+  
+    <div class="col-md-9">
+
+
+      <ul  class="albums">
+        <li class="thumbnail">
+          <h3>
+            <span class="thumb"><img ng-src = {{album.imageUrl}}></span>
+          </h3>
+           <h2><p>{{album.albumtitle}}</p></h2>
+           <p>Artist: {{album.artist}}</p>
+           <p>Genre: {{album.genre}}</p>
+        </li>
+      </ul>
+    </div>
+
+
+    <table class="table table-bordered table-striped">
+      <tr>
+        <thead>
+          <th><a ng-click="toggleSort('tracknum')">Track Number</a></th>
+          <th><a ng-click="toggleSort('tracktitle')">Track Title</a></th>
+          <th><a ng-click="toggleSort('trackcomposer')">Composer/Writer</a></th>
+          <th><a ng-click="toggleSort('trackartist')">Artist</a></th>
+          <th><a ng-click="toggleSort('tracktime')">Track Time</a></th>
+        </thead>
+      </tr>
+      <tbody ng-repeat="track in album.tracks | orderBy:sortColumn:sortReverse" ng-switch="track.tracktitle">
+
+        <tr ng-switch-default>
+          <td>{{track.tracknum}}</td>
+          <td>{{track.tracktitle}}</td>
+          <td>{{track.trackcomposer}}</td>
+          <td>{{track.trackartist}}</td>
+          <td>{{track.tracktime}}</td>
+        </tr>
+      </tbody>            
+    </table>    
+
+    <input  type="button" class="btn btn-primary" 
+                    ng-click="Edit(album)" 
+                    value="Edit Album"/>
+
+  </div>

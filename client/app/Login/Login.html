@@ -1,0 +1,20 @@
+
+<head>
+    <title>Sign in</title>
+</head>
+
+  <body>
+
+    <div class="container">
+
+      <form class="form-signin" role="form">
+        <h2 class="form-signin-heading">Please sign in</h2>
+        <input class="input-block-level" ng-model="user.email" placeholder="Email address" type="text">
+        <input class="input-block-level" ng-model="user.password" placeholder="Password" type="password">
+        <button type="button" ng-click="SignIn($event)" class="btn btn-lg btn-primary btn-block">SignIn</button>
+		    <button type="button" ng-click="AddUser($event)" class="btn btn-lg btn-primary btn-block">Register new user</button>
+      </form>
+
+    </div> <!-- /container -->
+
+</body></html>

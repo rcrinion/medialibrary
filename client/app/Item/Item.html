@@ -1,0 +1,67 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<h2>Media Library</h2>
+
+  <div>
+    <h3>
+      <a href="/AddItem">Add a new item</a>
+    </h3>
+  </div>
+  <div>
+    <form>
+      <div class="form-group">
+        <div class="input-group">
+          <div class="input-group-addon"><i class="fa fa-search"></i></div>
+              <input type="text" class="form-control" placeholder="Search Artist" ng-model="search.Artist">
+
+              <input type="text" class="form-control" placeholder="Search Title" ng-model="search.Title">
+              <input type="text" class="form-control" placeholder="Search Genre" ng-model="search.Genre">
+         </div>
+        </div>      
+      </div>
+    </form>
+
+  
+    <table class="table table-bordered table-striped">
+      <tr>
+        <thead>
+          <th><a ng-click="toggleSort('format')">Media Type</a></th>
+          <th><a ng-click="toggleSort('title')">Title</a></th>
+          <th><a ng-click="toggleSort('artist')">Artist</a></th>
+          <th><a ng-click="toggleSort('genre')">Genre</a></th>
+          <th><a ng-click="toggleSort('location')">Location</a></th>
+          <th><a ng-click="toggleSort('status')">Status</a></th>
+        </thead>
+      </tr>
+      <tbody ng-repeat="item in items | orderBy:sortColumn:sortReverse | filter:{artist: search.Artist} 
+                          | filter: {title: search.Title} 
+                          | filter: {genre: search.Genre}" 
+                          ng-switch="item.status">
+
+        <tr ng-switch-when="On Loan">
+          <td>{{item.format}}</td>
+          <td><a href="/{{item.format}}/{{item._id}}">{{item.title}}</a></td>
+          <td>{{item.artist}}</td>
+          <td>{{item.genre}}</td>
+          <td>{{item.location}}</td>
+          <td><input  type="button" class="btn btn-primary" 
+                    ng-click="returnItem(item)" 
+                    value="Return"/>
+          </td>
+        </tr>
+
+        <tr ng-switch-default>
+          <td>{{item.format}}</td>
+          <td><a href="/{{item.format}}/{{item._id}}">{{item.title}}</a></td>
+          <td>{{item.artist}}</td>
+          <td>{{item.genre}}</td>
+          <td>{{item.location}}</td>
+          <td><input type="button" class="btn btn-primary" 
+                    ng-click="borrowItem(item)" 
+                    value="Borrow"/>
+          </td>
+        </tr>
+
+      </tbody>            
+    </table>    
+  </div>
